@@ -8,22 +8,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "receta")
-@XmlType(propOrder = {"tipo","dificultad","nombre","ingredientes","calorias","tiempo","elaboracion"})
+@XmlType(propOrder = { "tipo","dificultad", "nombre", "ingredientes", "calorias","pasos", "tiempo",
+		"elaboracion" })
 public class Receta {
 
 	private Tipo tipo;
 	private String dificultad;
 	private String nombre;
-	private ArrayList<Ingrediente> ingredientes = new ArrayList<>();
+	private ArrayList<Ingrediente> ingredientes;
 	private String calorias;
 	private String tiempo;
 	private String elaboracion;
-	
+	private ArrayList<Paso> pasos;
+
 	public Receta() {
 	}
 
-	public String getDificultad() {
-		return dificultad;
+	@XmlElementWrapper(name = "pasos")
+	@XmlElement(name = "paso")
+	public ArrayList<Paso> getPasos() {
+		return pasos;
+	}
+
+	public void setPasos(ArrayList<Paso> pasos) {
+		this.pasos = pasos;
 	}
 
 	@XmlElement(name = "tipo")
@@ -35,10 +43,15 @@ public class Receta {
 		this.tipo = tipo;
 	}
 
+	public String getDificultad() {
+		return dificultad;
+	}
+
 	public void setDificultad(String dificultad) {
 		this.dificultad = dificultad;
 	}
 
+	@XmlElement(name = "nombre")
 	public String getNombre() {
 		return nombre;
 	}
@@ -80,7 +93,5 @@ public class Receta {
 	public void setElaboracion(String elaboracion) {
 		this.elaboracion = elaboracion;
 	}
-	
-	
-	
+
 }

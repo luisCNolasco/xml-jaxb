@@ -1,7 +1,5 @@
 package com.xml.controller;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.xml.entities.Menu;
+import com.xml.entities.ProccessOrderData1;
 import com.xml.entities.Recetas;
 import com.xml.repository.ConsultasXML;
 import com.xml.repository.ConsultasXMLReceta;
@@ -33,12 +32,21 @@ public class ConsultaController {
 
 	}
 	
-	@GetMapping("/receta")
+	@GetMapping("/recetas")
 	public Recetas listarReceta() throws JAXBException {
 
-		Recetas receta = (Recetas) ConsultasXMLReceta.listarReceta();
+		Recetas rs = ConsultasXMLReceta.listarRecetas();
 		
-		return receta;
+		return rs;
+
+	}
+	
+	@GetMapping("/datos")
+	public ProccessOrderData1 datos() throws JAXBException {
+
+		ProccessOrderData1 rs = ConsultasXMLReceta.datos();
+		
+		return rs;
 
 	}
 }
