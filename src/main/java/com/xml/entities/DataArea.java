@@ -5,14 +5,24 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlRootElement(name = "DataArea")
-@XmlType(propOrder = { "companyNumber", "process","gdsArea"})
+@XmlType(propOrder = { "companyNumber", "process","gdsArea","criteria"})
 public class DataArea {
 
 	private String companyNumber;
 	private Process process;
 	private GDSArea gdsArea;
+	private TransactionCriteria criteria;
 
 	public DataArea() {
+	}
+
+	@XmlElement(name = "TransactionCriteria")
+	public TransactionCriteria getCriteria() {
+		return criteria;
+	}
+
+	public void setCriteria(TransactionCriteria criteria) {
+		this.criteria = criteria;
 	}
 
 	@XmlElement(name = "CompanyNumber")

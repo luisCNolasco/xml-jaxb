@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.xml.entities.Menu;
 import com.xml.entities.ProccessOrderData1;
 import com.xml.entities.Recetas;
+import com.xml.entitiesfac.Invoice;
 import com.xml.repository.ConsultasXML;
 import com.xml.repository.ConsultasXMLReceta;
+import com.xml.repository.InvoiceRepository;
 
 import javax.xml.bind.JAXBException;
 
@@ -27,26 +29,33 @@ public class ConsultaController {
 	public List<Menu> consultarPorFecha(@PathVariable("fecha") String fecha) throws JAXBException {
 
 		List<Menu> listaObjetos = ConsultasXML.consultarFecha(fecha);
-		
+
 		return listaObjetos;
 
 	}
-	
+
 	@GetMapping("/recetas")
 	public Recetas listarReceta() throws JAXBException {
 
 		Recetas rs = ConsultasXMLReceta.listarRecetas();
-		
+
+		return rs;
+
+	}
+
+	@GetMapping("/datos")
+	public List<ProccessOrderData1> datos() throws JAXBException {
+
+		List<ProccessOrderData1> rs = ConsultasXMLReceta.datos();
+
 		return rs;
 
 	}
 	
-	@GetMapping("/datos")
-	public ProccessOrderData1 datos() throws JAXBException {
+	@GetMapping("/invoice")
+	public List<Invoice> listarInvoices() throws JAXBException {
 
-		ProccessOrderData1 rs = ConsultasXMLReceta.datos();
-		
+		List<Invoice> rs = InvoiceRepository.listar();
 		return rs;
-
 	}
 }

@@ -37,15 +37,18 @@ public class ConsultasXMLReceta {
 
 	}
 	
-	public static ProccessOrderData1 datos() throws JAXBException {
+	public static List<ProccessOrderData1> datos() throws JAXBException {
 		
+		List<ProccessOrderData1> lista =new ArrayList<ProccessOrderData1>();
 		JAXBContext contexto = JAXBContext.newInstance(ProccessOrderData1.class);
 		Unmarshaller unmarshaller = contexto.createUnmarshaller();
 
 		ProccessOrderData1 pro = (ProccessOrderData1) unmarshaller.unmarshal(new File("C:\\Users\\lcarranza\\Documents\\Documentos2\\prueba.xml"));
 		//convertirAXML();
 		con();
-		return pro;
+		
+		lista.add(pro);
+		return lista;
 
 	}
 	
